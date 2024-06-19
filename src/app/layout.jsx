@@ -20,7 +20,7 @@ export default async function RootLayout({ children }) {
             <header>
                <Navbar />
             </header>
-            <main className="container flex-1">{children}</main>
+            <main className="container h-full">{children}</main>
             {isAdmin && <AdminBtn />}
          </body>
       </html>
