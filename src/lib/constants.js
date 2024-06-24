@@ -17,3 +17,5 @@ export const ILS = "₪";
 export const U_CARE_API_BASEURL = "https://api.uploadcare.com";
 export const U_CARE_CDN_BASEURL = "https://ucarecdn.com";
 export const U_CARE_PUBLIC_KEY = "833cac450f04ae30bf74";
+
+export const LS_FAVORITES_KEY = "favDresses";

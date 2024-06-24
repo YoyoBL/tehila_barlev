@@ -1,9 +1,8 @@
 import BadgesFilters from "@/components/catalog/badgesFilters";
 import DressCard from "@/components/catalog/dressCard";
 import PageTitle from "@/components/common/pageTitle";
-import { ROUTES } from "@/lib/constants";
+import { FavoritesProvider } from "@/contexts/favouritesContext";
 import prisma from "@/lib/db";
-import Link from "next/link";
 
 const CatalogPage = async () => {
    const dresses = await prisma.dress.findMany();
@@ -12,16 +11,13 @@ const CatalogPage = async () => {
          <PageTitle title={"קטלוג שמלות"} />
          <BadgesFilters />
          <div className="grid grid-cols-2 gap-4 mt-5">
-            {dresses.map((dressData) => (
-               <Link
-                  key={dressData.id}
-                  href={ROUTES.catalog.path + `/${dressData.id}`}
-               >
+            <FavoritesProvider>
+               {dresses.map((dressData) => (
                   <div className="relative">
                      <DressCard key={dressData.id} dressData={dressData} />
                   </div>
-               </Link>
-            ))}
+               ))}
+            </FavoritesProvider>
          </div>
       </section>
    );

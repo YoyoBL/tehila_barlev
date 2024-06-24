@@ -1,6 +1,5 @@
 import DeleteDressBtn from "@/components/catalog/DeleteDressBtn";
 import AskAboutDressBtn from "@/components/common/AskAboutDressBtn";
-import Badge from "@/components/common/badge";
 import SectionWrapper from "@/components/common/sectionsWrapper";
 import { auth } from "@/lib/auth";
 import { ILS, ROUTES, U_CARE_CDN_BASEURL } from "@/lib/constants";
@@ -15,6 +14,7 @@ const DressPage = async ({ params: { dressId } }) => {
          id: dressId,
       },
    });
+   console.log(dressData);
 
    const sizes = `${Math.max(...dressData.sizes)} - ${Math.min(
       ...dressData.sizes

@@ -1,8 +1,12 @@
 "use client";
 
-import { ILS, U_CARE_CDN_BASEURL } from "@/lib/constants";
-import { memo } from "react";
+import { ILS, ROUTES, U_CARE_CDN_BASEURL } from "@/lib/constants";
+import { memo, useState } from "react";
 import Image from "next/image";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import { handleFav } from "@/lib/favourites";
+import { useFavorites } from "@/contexts/favouritesContext";
+
 const DressCard = memo(({ dressData }) => {
    let {
       images = [],
@@ -12,9 +16,13 @@ const DressCard = memo(({ dressData }) => {
       coverIndex = 0,
    } = dressData;
 
+   const router = useRouter();
+   const path = usePathname();
+   const { favDresses, handleFavClick } = useFavorites();
+
    const coverUuid = images[coverIndex];
    const coverSrc = coverUuid
-      ? `${U_CARE_CDN_BASEURL}/${coverUuid}/-/preview/`
+      ? `${U_CARE_CDN_BASEURL}/${coverUuid}/-/preview/400x720/`
       : null;
 
    sizes = sizes.map(Number);
@@ -26,17 +34,25 @@ const DressCard = memo(({ dressData }) => {
          return `${Math.max(...sizes)} - ${Math.min(...sizes)}`;
    })();
 
+   function onRedirect() {
+      if (!path.startsWith(ROUTES.catalog.path)) return null;
+      router.push(ROUTES.catalog.path + `/${dressData.id}`);
+   }
+
    return (
       <div className="relative w-full max-w-[200px] shrink-0">
-         <div className=" shadow-lg overflow-hidden rounded-2xl ">
+         <div
+            onClick={onRedirect}
+            className="shadow-lg overflow-hidden rounded-2xl"
+         >
             {coverUuid ? (
                <Image
                   src={coverSrc}
-                  height={909}
-                  width={600}
+                  width={400}
+                  height={720}
                   alt={"Black Dress"}
-                  className="h-[280px] object-cover"
-                  priority={true}
+                  className="h-[280px] object-cover object-center"
+                  priority
                />
             ) : (
                <div className="bg-neutral-500 h-[280px] w-[200px]"></div>
@@ -54,8 +70,15 @@ const DressCard = memo(({ dressData }) => {
                </div>
             </div>
          </div>
-         <div className="bg-primary size-12 rounded-full grid place-items-center absolute top-0 start-0 -translate-x-1/3 -translate-y-1/3 transition-transform duration-150 active:scale-125">
-            <i className="bi bi-heart text-2xl text-primary-content"></i>
+         <div
+            onClick={() => handleFavClick(dressData.id)}
+            className="bg-primary size-12 rounded-full grid place-items-center absolute  z-20 top-0 start-0 -translate-x-1/3 -translate-y-1/3 transition-transform duration-150 active:scale-110"
+         >
+            {favDresses[dressData.id] ? (
+               <i className="bi bi-heart-fill text-2xl text-white"></i>
+            ) : (
+               <i className="bi bi-heart text-2xl text-primary-content"></i>
+            )}
          </div>
       </div>
    );

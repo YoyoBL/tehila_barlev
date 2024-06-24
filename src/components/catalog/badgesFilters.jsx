@@ -3,7 +3,7 @@ import Badge from "../common/badge";
 
 const BadgesFilters = () => {
    const className =
-      "flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar whitespace-nowrap";
+      "flex items-center gap-2 overflow-x-auto pb-2 hide-scrollbar whitespace-nowrap shrink-0";
    return (
       <>
          <div className={className}>
