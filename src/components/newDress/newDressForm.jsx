@@ -8,17 +8,19 @@ import Badge from "@/components/common/badge";
 import DressCard from "@/components/catalog/dressCard";
 import { TEXTS } from "@/lib/texts";
 import { useImages } from "@/contexts/imageContext";
-import { addNewDress } from "@/actions/dress.actions";
+import { addNewDress, updateDress } from "@/actions/dress.actions";
 import { useEffect, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import Image from "next/image";
-import { U_CARE_CDN_BASEURL } from "@/lib/constants";
+import { ROUTES, U_CARE_CDN_BASEURL } from "@/lib/constants";
 import cn from "@/lib/twMerge";
+import { useRouter } from "next/navigation";
 const { tags, sizes: sizesTags } = TEXTS;
 
-const NewDressForm = () => {
-   const { files, resetUploader } = useImages();
+const NewDressForm = ({ dress }) => {
+   const { mounted, files, resetUploader, addImagesToUploadList } = useImages();
    const [error, setError] = useState("");
+   const { replace, refresh } = useRouter();
 
    const imagesUuid = useMemo(() => files.map((file) => file.uuid), [files]);
 
@@ -33,6 +35,13 @@ const NewDressForm = () => {
       );
    }
 
+   // useEffect(() => {
+   //    if (!mounted) return;
+   //    const ctx = document.querySelector("#uploaderctx");
+
+   //    addImagesToUploadList(["e75d3aa3-9b27-4c17-b7af-dc80569d76c7","192db5d1-f844-4303-9e61-8451fb88c8e9" ])
+   // }, [mounted]);
+
    const formik = useFormik({
       initialValues: {
          title: "",
@@ -46,9 +55,22 @@ const NewDressForm = () => {
             if (!tags.length || !sizes.length || !imagesUuid.length)
                throw new Error(TEXTS.newDress.missingFields);
             values = { ...values, images: imagesUuid };
-            const { data, error } = await addNewDress(values);
+            let res;
+            if (!dress) {
+               //if new dress
+               res = await addNewDress(values);
+            } else {
+               //if updating existing dress
+               res = await updateDress(values);
+            }
+            const { data, error } = res;
             if (error) return console.log(error);
+            //if updating, return to dress page
+            if (dress) replace(ROUTES.catalog.path + "/" + dress.id);
+            console.log(data);
             resetUploader();
+            resetTags([...formik.values.tags, ...formik.values.sizes]);
+
             formik.resetForm();
          } catch (error) {
             console.log(error);
@@ -56,6 +78,15 @@ const NewDressForm = () => {
          }
       },
    });
+
+   // id updating existing dress
+   useEffect(() => {
+      if (!dress) return;
+      if (!mounted) return;
+      formik.setValues(dress);
+      resetTags([...dress.tags, ...dress.sizes], true);
+      addImagesToUploadList(dress.images);
+   }, [mounted]);
 
    const { title, price, sizes, coverIndex } = formik.values;
 
@@ -173,3 +204,10 @@ const NewDressForm = () => {
 };
 
 export default NewDressForm;
+
+function resetTags(tags = [], checked = false) {
+   for (const badgeValue of tags) {
+      const element = document.querySelector(`input[value="${badgeValue}"]`);
+      element.checked = checked;
+   }
+}

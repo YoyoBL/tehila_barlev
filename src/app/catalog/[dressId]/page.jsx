@@ -53,7 +53,9 @@ const DressPage = async ({ params: { dressId } }) => {
                   <>
                      <DeleteDressBtn dressData={dressData} />
                      <div className="absolute top-0 left-0 btn btn-circle btn-accent m-3">
-                        <Link href={ROUTES.newDress + `?edit=${dressData.id}`}>
+                        <Link
+                           href={ROUTES.newDress.path + `?edit=${dressData.id}`}
+                        >
                            <i className="bi bi-pencil text-xl"></i>
                         </Link>
                      </div>

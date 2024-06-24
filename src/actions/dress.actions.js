@@ -7,12 +7,34 @@ import { redirect } from "next/navigation";
 import { deleteMultipleImages } from "@/lib/uCareSignature";
 import { revalidatePath } from "next/cache";
 import { ROUTES } from "@/lib/constants";
+import { auth } from "@/lib/auth";
+import { authorize } from "@/lib/authorize";
 
 export async function addNewDress(formData) {
    try {
-      const res = await prisma.dress.create({ data: formData });
-      return { data: res, error: null };
+      const newDress = await prisma.dress.create({ data: formData });
+      revalidateCatalogPage();
+      const { id, createdAt, images, ...data } = newDress;
+      return { data, error: null };
    } catch (error) {
+      return { error: error.message, data: null };
+   }
+}
+
+export async function updateDress(dress) {
+   const { id: dressId, ...rest } = dress;
+   try {
+      const updateDress = await prisma.dress.update({
+         where: {
+            id: dressId,
+         },
+         data: rest,
+      });
+      revalidateCatalogPage();
+      const { id, createdAt, images, ...data } = updateDress;
+      return { error: null, data };
+   } catch (error) {
+      console.log("updateDress error: ", error.message);
       return { error: error.message, data: null };
    }
 }
@@ -44,4 +66,23 @@ export async function deleteDress(dressId) {
       console.log("deleteDress error: ", error.message);
       return { error: error.message, data: null };
    }
+}
+
+export async function getDress(dressId) {
+   try {
+      await authorize();
+      const dress = await prisma.dress.findUnique({
+         where: {
+            id: dressId,
+         },
+      });
+      return { error: null, data: dress };
+   } catch (error) {
+      console.log("getDress error: ", error.message);
+      return { error: error.message, data: null };
+   }
+}
+
+function revalidateCatalogPage() {
+   revalidatePath(ROUTES.catalog.path);
 }

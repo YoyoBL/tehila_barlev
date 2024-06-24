@@ -8,7 +8,11 @@ import "@uploadcare/react-uploader/core.css";
 import { useImages } from "@/contexts/imageContext";
 
 function ImageUpload() {
-   const { files, setFiles } = useImages();
+   const { files, setFiles, setMounted } = useImages();
+
+   useEffect(() => {
+      setMounted(true);
+   }, []);
 
    const handleChangeEvent = (items) => {
       setFiles([

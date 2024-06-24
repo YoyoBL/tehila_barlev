@@ -5,9 +5,12 @@ const ImageContext = createContext({
    files: [],
    setFiles: () => {},
    resetUploader: () => {},
+   addImagesToUploadList: () => {},
 });
 
 export const ImageProvider = ({ children }) => {
+   const [mounted, setMounted] = useState(false);
+
    const [files, setFiles] = useState([]);
    const ctxRef = useRef();
 
@@ -15,14 +18,32 @@ export const ImageProvider = ({ children }) => {
       ctxRef.current.removeAllFiles();
    }
 
+   function addImagesToUploadList(imagesUuids = []) {
+      imagesUuids.forEach((imageUuid) =>
+         ctxRef.current.addFileFromUuid(imageUuid)
+      );
+   }
+
    return (
-      <ImageContext.Provider value={{ files, setFiles, resetUploader }}>
+      <>
          <lr-upload-ctx-provider
+            id="uploaderctx"
             ref={ctxRef}
             ctx-name="my-uploader"
          ></lr-upload-ctx-provider>
-         {children}
-      </ImageContext.Provider>
+         <ImageContext.Provider
+            value={{
+               files,
+               setFiles,
+               mounted,
+               setMounted,
+               resetUploader,
+               addImagesToUploadList,
+            }}
+         >
+            {children}
+         </ImageContext.Provider>
+      </>
    );
 };
 
