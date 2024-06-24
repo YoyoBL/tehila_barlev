@@ -1,6 +1,10 @@
 import "server-only";
 
-import { UploadcareAuthSchema, deleteFiles } from "@uploadcare/rest-client";
+import {
+   UploadcareAuthSchema,
+   deleteFiles,
+   storeFiles,
+} from "@uploadcare/rest-client";
 
 const uploadCareSchema = new UploadcareAuthSchema({
    publicKey: "833cac450f04ae30bf74",
@@ -12,5 +16,11 @@ export async function deleteMultipleImages(uuids) {
       { uuids },
       { authSchema: uploadCareSchema }
    );
+   return result;
+}
+
+export async function storeImages(uuids = []) {
+   const result = await storeFiles({ uuids }, { authSchema: uploadCareSchema });
+   console.log(result);
    return result;
 }

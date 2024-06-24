@@ -19,9 +19,12 @@ const DressCard = memo(({ dressData }) => {
 
    sizes = sizes.map(Number);
 
-   const size = sizes[1]
-      ? `${Math.max(...sizes)} - ${Math.min(...sizes)}`
-      : "0 - 0";
+   const size = (() => {
+      if (!sizes.length) return "0 - 0";
+      if (sizes.length === 1) return sizes[0];
+      if (sizes.length > 1)
+         return `${Math.max(...sizes)} - ${Math.min(...sizes)}`;
+   })();
 
    return (
       <div className="relative w-full max-w-[200px] shrink-0">

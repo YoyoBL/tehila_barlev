@@ -4,17 +4,17 @@ import "server-only";
 import prisma from "@/lib/db";
 import { TEXTS } from "@/lib/texts";
 import { redirect } from "next/navigation";
-import { deleteMultipleImages } from "@/lib/uCareSignature";
+import { deleteMultipleImages, storeImages } from "@/lib/uCareSignature";
 import { revalidatePath } from "next/cache";
 import { ROUTES } from "@/lib/constants";
-import { auth } from "@/lib/auth";
 import { authorize } from "@/lib/authorize";
 
 export async function addNewDress(formData) {
    try {
       const newDress = await prisma.dress.create({ data: formData });
-      revalidateCatalogPage();
       const { id, createdAt, images, ...data } = newDress;
+      await storeImages(images);
+      revalidateCatalogPage();
       return { data, error: null };
    } catch (error) {
       return { error: error.message, data: null };
@@ -32,6 +32,8 @@ export async function updateDress(dress) {
       });
       revalidateCatalogPage();
       const { id, createdAt, images, ...data } = updateDress;
+      await storeImages(images);
+
       return { error: null, data };
    } catch (error) {
       console.log("updateDress error: ", error.message);

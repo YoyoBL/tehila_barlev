@@ -156,13 +156,15 @@ const NewDressForm = ({ dress }) => {
                {imagesUuid.map((uuid, index) => (
                   <Image
                      key={uuid}
-                     src={U_CARE_CDN_BASEURL + "/" + uuid + "/-/preview/"}
-                     width={600}
-                     height={909}
+                     src={
+                        U_CARE_CDN_BASEURL + "/" + uuid + "/-/preview/120x360"
+                     }
+                     width={120}
+                     height={360}
                      onClick={() => formik.setFieldValue("coverIndex", index)}
                      alt="Dress preview"
                      className={cn(
-                        "w-20 object-cover rounded-btn",
+                        "object-cover rounded-btn max-h-[176px]",
                         index === formik.values.coverIndex &&
                            "outline outline-4 outline-info"
                      )}
@@ -190,7 +192,7 @@ const NewDressForm = ({ dress }) => {
          )}
          <button
             disabled={formik.isSubmitting}
-            className="btn btn-primary btn-block btn-lg"
+            className="btn btn-primary btn-block btn-lg mb-5"
             type="submit"
          >
             {formik.isSubmitting ? (
