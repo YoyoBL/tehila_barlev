@@ -11,7 +11,7 @@ export const TEXTS = {
    routesTitles: {
       home: "בית",
       about: "אודותיי",
-      catalog: "קטלוג",
+      catalog: "קטלוג שמלות",
       guide: "מדריך",
       newDress: "הוספת שמלה",
    },
@@ -39,5 +39,5 @@ export const TEXTS = {
       "צבעוני",
       "מידות גדולות",
    ],
-   sizes: [36, 38, 40, 42],
+   sizes: ["36", "38", "40", "42"],
 };

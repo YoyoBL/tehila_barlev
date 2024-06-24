@@ -1,11 +1,10 @@
 "use client";
 
 import { ILS, ROUTES, U_CARE_CDN_BASEURL } from "@/lib/constants";
-import { memo, useState } from "react";
+import { memo } from "react";
 import Image from "next/image";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import { handleFav } from "@/lib/favourites";
-import { useFavorites } from "@/contexts/favouritesContext";
+import { usePathname, useRouter } from "next/navigation";
+import { useFavorites } from "@/contexts/favoritesContext";
 
 const DressCard = memo(({ dressData }) => {
    let {
