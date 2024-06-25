@@ -12,7 +12,7 @@ export const TEXTS = {
    },
    routesTitles: {
       home: "בית",
-      about: "אודותיי",
+      about: "שאלות נפוצות",
       catalog: "קטלוג שמלות",
       guide: "מדריך",
       newDress: "הוספת שמלה",
@@ -42,4 +42,17 @@ export const TEXTS = {
       "מידות גדולות",
    ],
    sizes: ["36", "38", "40", "42"],
+};
+
+export const METADATA = {
+   siteTitle: "תהילה בר-לב",
+   homePage: {
+      title: "בית",
+      description: "מבחר שמלות ערב צנועות להשכרה מאת המעצבת תהילה בר-לב.",
+   },
+   catalog: {
+      title: TEXTS.routesTitles.catalog,
+      description:
+         "סטודיו תהילה בר-לב | מבחר שמלות ערב צנועות להשכרה מאת המעצבת תהילה בר-לב.",
+   },
 };

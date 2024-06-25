@@ -4,18 +4,32 @@ import AskAboutDressBtn from "@/components/common/AskAboutDressBtn";
 import SectionWrapper from "@/components/common/sectionsWrapper";
 import { auth } from "@/lib/auth";
 import { ILS, ROUTES, U_CARE_CDN_BASEURL } from "@/lib/constants";
-import prisma from "@/lib/db";
+import { getDress } from "@/lib/dressLib";
 import Image from "next/image";
 import Link from "next/link";
 
+export async function generateMetadata({ params: { dressId } }) {
+   const dress = await getDress(dressId);
+
+   return {
+      title: dress.title,
+      description: `פרטים נוספים וישצירת קשר אודות ${dress.title}`,
+      openGraph: {
+         images: [
+            {
+               url: `${U_CARE_CDN_BASEURL}/${
+                  dress.images[dress.coverIndex]
+               }/=/resize/320x/`, // Must be an absolute URL
+               width: 320,
+            },
+         ],
+      },
+   };
+}
+
 const DressPage = async ({ params: { dressId } }) => {
    const session = await auth();
-   const dressData = await prisma.dress.findUnique({
-      where: {
-         id: dressId,
-      },
-   });
-   console.log(dressData);
+   const dressData = await getDress(dressId);
 
    const sizes = `${Math.max(...dressData.sizes)} - ${Math.min(
       ...dressData.sizes
@@ -41,6 +55,7 @@ const DressPage = async ({ params: { dressId } }) => {
                         fill
                         alt={dressData.title + " " + (index + 1)}
                         className="object-cover"
+                        priority
                      />
                   </div>
                ))}

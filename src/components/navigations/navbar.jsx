@@ -4,7 +4,11 @@ import { playFairDisplay } from "@/lib/fonts";
 import logo from "@/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import AdminBtn from "../adminBtn";
 const Navbar = () => {
+   const session = useSession();
+   const isAdmin = session?.status === "authenticated";
    return (
       <nav className="w-full bg-base-200 border-b-4 border-black shadow">
          <div
@@ -28,17 +32,14 @@ const Navbar = () => {
                </li>
 
                <li>
-                  <Link href={ROUTES.catalog.path}>
-                     {" "}
-                     {ROUTES.catalog.title}{" "}
-                  </Link>
+                  <Link href={ROUTES.catalog.path}>{ROUTES.catalog.title}</Link>
                </li>
                <li>
                   <Link href={ROUTES.about.path}> {ROUTES.about.title} </Link>
                </li>
-               <li>
-                  <Link href={ROUTES.guide.path}> {ROUTES.guide.title} </Link>
-               </li>
+
+               {isAdmin && <AdminBtn />}
+
                <li>
                   <Link href={ROUTES.instagram.path}>
                      <i className="bi bi-instagram text-3xl"></i>

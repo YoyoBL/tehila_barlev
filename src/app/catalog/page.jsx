@@ -5,6 +5,9 @@ import DressesList from "@/components/catalog/dressesList";
 import PageTitle from "@/components/common/pageTitle";
 import { ROUTES } from "@/lib/constants";
 import prisma from "@/lib/db";
+import { METADATA } from "@/lib/texts";
+
+export const metadata = METADATA.catalog;
 
 const CatalogPage = async () => {
    const dresses = await prisma.dress.findMany();
