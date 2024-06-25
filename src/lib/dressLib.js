@@ -9,3 +9,7 @@ export const getDress = cache(async (dressId) => {
    });
    return dress;
 });
+
+export const getAllDresses = cache(async () => {
+   return await prisma.dress.findMany();
+});

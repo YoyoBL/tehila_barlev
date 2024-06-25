@@ -20,12 +20,12 @@ export default async function RootLayout({ children }) {
          <body
             className={`${assistant.className} h-dvh flex flex-col text-xl overflow-auto`}
          >
-            <header>
-               <SessionProvider>
+            <SessionProvider>
+               <header>
                   <Navbar />
-               </SessionProvider>
-            </header>
-            <main className="container h-full">{children}</main>
+               </header>
+               <main className="container h-full">{children}</main>
+            </SessionProvider>
          </body>
       </html>
    );
