@@ -5,10 +5,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 const DressFiltersContext = createContext({
    filters: [],
    onFilterClick: () => {},
+   onFavFilterClick: () => {},
+   filterByFav: false,
 });
 
 export const DressFiltersProvider = ({ children }) => {
    const [filters, setFilters] = useState([]);
+   const [filterByFav, setFilterByFav] = useState(false);
 
    function onFilterClick(filter) {
       setFilters((filters) => {
@@ -20,8 +23,14 @@ export const DressFiltersProvider = ({ children }) => {
       });
    }
 
+   function onFavFilterClick() {
+      setFilterByFav((filterByFav) => !filterByFav);
+   }
+
    return (
-      <DressFiltersContext.Provider value={{ filters, onFilterClick }}>
+      <DressFiltersContext.Provider
+         value={{ filters, onFilterClick, onFavFilterClick, filterByFav }}
+      >
          {children}
       </DressFiltersContext.Provider>
    );

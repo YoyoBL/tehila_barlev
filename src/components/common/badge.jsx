@@ -1,7 +1,7 @@
 "use client";
 import cn from "@/lib/twMerge";
 
-const Badge = ({ title = "title", className, ...rest }) => {
+const Badge = ({ title = "title", className, inputClassName, ...rest }) => {
    return (
       <label
          className={cn(
@@ -9,8 +9,12 @@ const Badge = ({ title = "title", className, ...rest }) => {
             className
          )}
       >
+         <input
+            type="checkbox"
+            className={cn("hidden", inputClassName)}
+            {...rest}
+         />
          {title}
-         <input type="checkbox" className="hidden" {...rest} />
       </label>
    );
 };
