@@ -71,7 +71,7 @@ const DressCard = memo(({ dressData }) => {
          </div>
          <div
             onClick={() => handleFavClick(dressData.id)}
-            className="bg-primary size-12 rounded-full grid place-items-center absolute  z-20 top-0 start-0 -translate-x-1/3 -translate-y-1/3 transition-transform duration-150 active:scale-110"
+            className="bg-primary size-12 rounded-full grid place-items-center absolute top-0 start-0 -translate-x-1/3 -translate-y-1/3 transition-transform duration-150 active:scale-110"
          >
             {favDresses[dressData.id] ? (
                <i className="bi bi-heart-fill text-2xl text-white"></i>

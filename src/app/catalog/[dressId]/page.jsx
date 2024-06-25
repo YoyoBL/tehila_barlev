@@ -34,7 +34,6 @@ export async function generateMetadata({ params: { dressId } }) {
 }
 
 const DressPage = async ({ params: { dressId } }) => {
-   // const session = await auth();
    const dressData = await getDress(dressId);
 
    const sizes = `${Math.max(...dressData.sizes)} - ${Math.min(
