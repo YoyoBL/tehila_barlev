@@ -9,9 +9,9 @@ const AdminBtn = () => {
       !path.startsWith("/admin") && (
          <Link
             href={"/admin"}
-            className="btn btn-primary btn-lg fixed bottom-0  m-5 bg-black"
+            className="btn btn-primary btn-circle fixed top-0  m-1 bg-black"
          >
-            👑 יפשלי
+            👑
          </Link>
       )
    );

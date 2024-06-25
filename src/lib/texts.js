@@ -6,7 +6,9 @@ export const TEXTS = {
       pictures: "תמונות",
       save: "שמירה",
       price: "מחיר",
-      askAboutDress: "אני רוצה עוד פרטים על השמלה",
+      askAboutDress: "פרטים על השמלה",
+      shareBtn: "שתפי שמלה",
+      shareTitle: "קלטי איזו שמלה מושלמת!",
    },
    routesTitles: {
       home: "בית",

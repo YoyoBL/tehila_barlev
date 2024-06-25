@@ -1,4 +1,5 @@
 import DeleteDressBtn from "@/components/catalog/DeleteDressBtn";
+import ShareDressBtn from "@/components/catalog/ShareDressBtn";
 import AskAboutDressBtn from "@/components/common/AskAboutDressBtn";
 import SectionWrapper from "@/components/common/sectionsWrapper";
 import { auth } from "@/lib/auth";
@@ -63,17 +64,10 @@ const DressPage = async ({ params: { dressId } }) => {
                )}
             </div>
          </div>
-
-         <AskAboutDressBtn />
-         {/* <div className="mx-auto" id="tags">
-            {dressData.tags.map((tag) => (
-               <Badge
-                  key={tag}
-                  title={tag}
-                  className="bg-primary text-primary-content "
-               />
-            ))}
-         </div> */}
+         <div className="flex gap-2">
+            <ShareDressBtn dress={dressData} />
+            <AskAboutDressBtn />
+         </div>
       </SectionWrapper>
    );
 };
