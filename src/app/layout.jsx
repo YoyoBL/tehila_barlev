@@ -24,7 +24,7 @@ export default async function RootLayout({ children }) {
                <header>
                   <Navbar />
                </header>
-               <main className="container h-full">{children}</main>
+               <main className="container h-full mx-auto">{children}</main>
             </SessionProvider>
          </body>
       </html>

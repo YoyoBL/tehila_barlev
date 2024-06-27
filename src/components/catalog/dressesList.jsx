@@ -17,9 +17,9 @@ const DressesList = ({ dresses }) => {
          );
       });
    return (
-      <div className="grid grid-cols-2 gap-4 mt-5">
+      <div className="grid grid-cols-2 md:flex md:flex-wrap gap-4 mt-5">
          {dresses.map((dressData) => (
-            <div key={dressData.id} className="relative">
+            <div key={dressData.id} className="relative shrink-0">
                <DressCard dressData={dressData} />
             </div>
          ))}

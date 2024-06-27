@@ -1,8 +1,7 @@
 "use client";
 import { ROUTES } from "@/lib/constants";
 import { playFairDisplay } from "@/lib/fonts";
-import logo from "@/images/logo.png";
-import Image from "next/image";
+
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import AdminBtn from "../adminBtn";
@@ -26,7 +25,7 @@ const Navbar = () => {
          <div id="menu-links">
             <ul className="flex gap-3 justify-evenly items-center p-3">
                <li>
-                  <Link href={ROUTES.whatsapp.path}>
+                  <Link href={ROUTES.whatsapp.path} target="_blank">
                      <i className="bi bi-whatsapp text-3xl"></i>
                   </Link>
                </li>
@@ -41,7 +40,7 @@ const Navbar = () => {
                {isAdmin && <AdminBtn />}
 
                <li>
-                  <Link href={ROUTES.instagram.path}>
+                  <Link href={ROUTES.instagram.path} target="_blank">
                      <i className="bi bi-instagram text-3xl"></i>
                   </Link>
                </li>

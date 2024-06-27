@@ -1,10 +1,4 @@
-import AdminCrudBtns from "@/components/adminCrudBtns";
-import ShareDressBtn from "@/components/catalog/ShareDressBtn";
-import AskAboutDressBtn from "@/components/common/AskAboutDressBtn";
 import SectionWrapper from "@/components/common/sectionsWrapper";
-import { ILS, U_CARE_CDN_BASEURL } from "@/lib/constants";
-import { getAllDresses, getDress } from "@/lib/dressLib";
-import Image from "next/image";
 
 const DressPageLoading = () => {
    return (
