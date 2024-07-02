@@ -4,7 +4,7 @@
 
 - **Developer:** Yoel Bar-Lev
 - **Email:** [yoelbl2@gmail.com](mailto:yoelbl2@gmail.com)
-- **Production Deployment:** [Atsmai Expense Tracker](https://tehila-barlev.vercel.app/)
+- **Production Deployment:** [Tehila Barlev dresses studio](https://tehila-barlev.vercel.app/)
 
 ## Getting Started
 
