@@ -23,10 +23,18 @@ function generateDresses(numOfDresses: any) {
 async function main() {
    console.log("Seed starts...");
    const dresses = generateDresses(8);
-   console.log(dresses);
 
-   const res = await prisma.dress.createMany({ data: dresses });
-   console.log(res);
+   const admin = await prisma.user.upsert({
+      where: { email: "admin@gmail.com" },
+      update: {},
+      create: {
+         email: "admin@gmail.com",
+         name: "Admin",
+         password: "Aa123456@",
+      },
+   });
+   await prisma.dress.createMany({ data: dresses });
+   console.log({ email: admin.email, password: admin.password });
 
    console.log("Seed ends.");
 }
