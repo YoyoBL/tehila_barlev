@@ -1,4 +1,4 @@
-# Atsmai Expense Tracker App by Yoel Bar-Lev
+# Dresses studio App by Yoel Bar-Lev
 
 ## Overview
 
