@@ -5,6 +5,7 @@ import { assistant } from "@/lib/fonts";
 
 import { METADATA } from "@/lib/texts";
 import { SessionProvider } from "next-auth/react";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
    title: {
@@ -17,6 +18,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
    return (
       <html lang="he" dir="rtl">
+         <GoogleTagManager gtmId="GTM-5BZ9KN4L" />
          <body
             className={`${assistant.className} h-dvh flex flex-col text-xl overflow-auto`}
          >

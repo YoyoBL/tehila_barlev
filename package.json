@@ -12,6 +12,7 @@
       "lint": "next lint"
    },
    "dependencies": {
+      "@next/third-parties": "^14.2.4",
       "@prisma/client": "^5.15.0",
       "@uploadcare/blocks": "0.43.0",
       "@uploadcare/react-uploader": "^0.5.4",
@@ -21,7 +22,7 @@
       "clsx": "^2.1.1",
       "daisyui": "^4.12.2",
       "formik": "^2.4.6",
-      "next": "14.2.4",
+      "next": "^14.2.4",
       "next-auth": "^5.0.0-beta.19",
       "prisma": "^5.15.0",
       "react": "^18",

@@ -1,6 +1,7 @@
 "use client";
 
 import { TEXTS } from "@/lib/texts";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 const ShareDressBtn = ({ dress }) => {
    const handleShare = async () => {
@@ -11,6 +12,7 @@ const ShareDressBtn = ({ dress }) => {
                text: TEXTS.common.shareTitle,
                url: `/catalog/${dress.id}`,
             });
+
             console.log("Content shared successfully");
          } catch (error) {
             console.error("Error sharing content:", error);
@@ -18,10 +20,12 @@ const ShareDressBtn = ({ dress }) => {
       } else {
          console.log("Web Share API is not supported in your browser.");
       }
+      sendGTMEvent({ event: "share_dress" });
    };
 
    return (
       <button
+         id="share-dress"
          onClick={handleShare}
          className="btn h-full grid gap-0 font-light btn-sm"
       >
