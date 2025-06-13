@@ -14,22 +14,22 @@ module.exports = {
          },
       },
    },
-   plugins: [require("daisyui")],
-   daisyui: {
-      themes: [
-         {
-            light: {
-               ...require("daisyui/src/theming/themes")["light"],
-               primary: "black",
-               secondary: "#FFF1EB",
-               "secondary-content": "black",
-               neutral: "#9ca3af",
-               "neutral-content": "black",
-               "base-200": "#FFF1EB",
-               "--rounded-box": "2rem",
-               "--rounded-btn": "0.6rem",
-            },
-         },
-      ],
-   },
+   // plugins: [require("daisyui")],
+   // daisyui: {
+   //    themes: [
+   //       {
+   //          light: {
+   //             ...require("daisyui/src/theming/themes")["light"],
+   //             primary: "black",
+   //             secondary: "#FFF1EB",
+   //             "secondary-content": "black",
+   //             neutral: "#9ca3af",
+   //             "neutral-content": "black",
+   //             "base-200": "#FFF1EB",
+   //             "--rounded-box": "2rem",
+   //             "--rounded-btn": "0.6rem",
+   //          },
+   //       },
+   //    ],
+   // },
 };
