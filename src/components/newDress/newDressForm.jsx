@@ -166,7 +166,7 @@ const NewDressForm = ({ dress }) => {
                      className={cn(
                         "object-cover rounded-btn max-h-[176px]",
                         index === formik.values.coverIndex &&
-                           "outline outline-4 outline-info"
+                           "outline-solid outline-4 outline-info"
                      )}
                   />
                ))}

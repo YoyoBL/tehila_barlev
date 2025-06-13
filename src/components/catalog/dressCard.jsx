@@ -74,7 +74,7 @@ const DressCard = memo(({ dressData }) => {
             className="bg-primary active:scale-110  size-12 rounded-full grid place-items-center absolute top-0 start-0 -translate-x-1/3 -translate-y-1/3 transition-transform duration-150 "
          >
             {favDresses[dressData.id] ? (
-               <i className="bi bi-heart-fill text-2xl text-white"></i>
+               <i className="bi bi-heart-fill text-2xl"></i>
             ) : (
                <i className="bi bi-heart text-2xl text-primary-content"></i>
             )}

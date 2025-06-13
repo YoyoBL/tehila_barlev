@@ -19,7 +19,7 @@ const AboutPage = () => {
          <div className="flex flex-col gap-2">
             {q_and_a.map(({ question, answer }, index) => (
                <>
-                  <div className="collapse bg-base-200">
+                  <div className="collapse bg-primary">
                      <input
                         type="radio"
                         name="my-accordion-1"

@@ -19,7 +19,7 @@ export async function generateMetadata({ params: { dressId } }) {
 
    return {
       title: dress.title,
-      description: `פרטים נוספים וישצירת קשר אודות ${dress.title}`,
+      description: `פרטים נוספים ויצירת קשר אודות ${dress.title}`,
       openGraph: {
          images: [
             {
@@ -43,7 +43,7 @@ const DressPage = async ({ params: { dressId } }) => {
       <SectionWrapper className="h-full relative">
          <div className="grid grid-cols-3 place-items-center">
             <h1>{dressData.title}</h1>
-            <h2 className="w-full border-l-2 border-r-2 text-center">
+            <h2 className="w-full border-l border-r text-center">
                {dressData.price + ILS}
             </h2>
             <h2>{sizes}</h2>
