@@ -5,7 +5,7 @@ const Badge = ({ title = "title", className, inputClassName, ...rest }) => {
    return (
       <label
          className={cn(
-            "badge  badge-secondary badge-lg  p-3 has-[:checked]:badge-primary",
+            "badge badge-primary badge-lg  p-3 has-[:checked]:badge-neutral",
             className
          )}
       >

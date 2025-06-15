@@ -1,6 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin "daisyui" {
+   themes: light --default;
+}
+@plugin "daisyui/theme" {
+   name: "light";
+   default: true;
+   --color-primary: oklch(98% 0.016 73.684);
+   --color-primary-content: oklch(21% 0.006 285.885);
+
+   --color-secondary: oklch(92% 0.003 48.717);
+   --color-secondary-content: oklch(21% 0.006 285.885);
+}
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 /* .hide-scrollbar::-webkit-scrollbar {

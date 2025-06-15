@@ -21,7 +21,7 @@ function App() {
             <h2 className={`${playFairDisplay.className} text-4xl`}>
                New Collection
             </h2>
-            <h2 className={`${pinyon.className}`}>2024</h2>
+            <h2 className={`${pinyon.className}`}>2025</h2>
             <Link
                href={ROUTES.catalog.path}
                className="btn btn-primary w-[250px] h-16  font-light text-3xl"

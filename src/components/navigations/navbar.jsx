@@ -9,7 +9,7 @@ const Navbar = () => {
    const session = useSession();
    const isAdmin = session?.status === "authenticated";
    return (
-      <nav className="w-full bg-base-200 border-b-4 border-black shadow">
+      <nav className="w-full bg-primary border-b-4 border-black shadow-sm">
          <div
             id="logo"
             className="bg-base-100 rounded-b-btn shadow-md text-center py-1 px-6"
@@ -18,7 +18,7 @@ const Navbar = () => {
                href={ROUTES.home.path}
                className={`${playFairDisplay.className} text-2xl`}
             >
-               <span className="divider divider-primary ">Tehila Barlev</span>
+               <span className="divider divider-neutral ">Tehila Barlev</span>
             </Link>
          </div>
 
@@ -32,6 +32,10 @@ const Navbar = () => {
 
                <li>
                   <Link href={ROUTES.catalog.path}>{ROUTES.catalog.title}</Link>
+               </li>
+
+               <li>
+                  <div className=""> |</div>
                </li>
                <li>
                   <Link href={ROUTES.about.path}> {ROUTES.about.title} </Link>
