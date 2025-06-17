@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://tehilabarlev.com
+
+# Sitemaps
+Sitemap: https://tehilabarlev.com/sitemap.xml
