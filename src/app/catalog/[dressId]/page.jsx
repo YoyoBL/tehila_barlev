@@ -40,16 +40,16 @@ const DressPage = async ({ params: { dressId } }) => {
       ...dressData.sizes
    )}`;
    return (
-      <SectionWrapper className="h-full relative">
-         <div className="grid grid-cols-3 place-items-center">
+      <SectionWrapper className="h-full justify-center relative">
+         <div className="grid grid-cols-3 place-items-center md:w-xl md:mx-auto">
             <h1>{dressData.title}</h1>
             <h2 className="w-full border-l border-r text-center">
                {dressData.price + ILS}
             </h2>
             <h2>{sizes}</h2>
          </div>
-         <div className="flex-1 flex relative">
-            <div className="flex-1 carousel rounded-box">
+         <div className="flex-1 flex justify-center relative">
+            <div className="flex-1 carousel rounded-box md:hidden">
                {dressData.images.map((imageUuid, index) => (
                   <div
                      key={imageUuid}
@@ -71,6 +71,44 @@ const DressPage = async ({ params: { dressId } }) => {
                   <i className="bi bi-chevron-right"></i>
                </div>
                <AdminCrudBtns dressData={dressData} />
+            </div>
+
+            <div class="carousel w-full max-w-xl hidden md:flex rounded-xl">
+               {dressData.images.map((imageUuid, index) => (
+                  <div
+                     key={imageUuid}
+                     id={"slide" + index}
+                     className="carousel-item relative w-full"
+                  >
+                     <Image
+                        src={U_CARE_CDN_BASEURL + `/${imageUuid}/-/preview/`}
+                        fill
+                        alt={dressData.title + " " + (index + 1)}
+                        className="object-cover"
+                        priority
+                     />
+                     <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+                        <a
+                           href={`#slide${
+                              index == 0 ? "0" : Number(index) - 1
+                           }`}
+                           class="btn btn-circle"
+                        >
+                           ❮
+                        </a>
+                        <a
+                           href={`#slide${Number(index) + 1}`}
+                           class="btn btn-circle"
+                        >
+                           ❯
+                        </a>
+                     </div>
+                  </div>
+               ))}
+               {/* <img
+                     src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
+                     class="w-full"
+                  /> */}
             </div>
          </div>
          <div className="flex gap-2">
