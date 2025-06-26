@@ -53,7 +53,12 @@ export const METADATA = {
    catalog: {
       title: TEXTS.routesTitles.catalog,
       description:
-         "סטודיו תהילה בר-לב | מבחר שמלות ערב צנועות להשכרה מאת המעצבת תהילה בר-לב.",
+         "סטודיו תהילה בר-לב | קטלוג שמלות ערב צנועות להשכרה מאת המעצבת תהילה בר-לב.",
+   },
+   about: {
+      title: TEXTS.routesTitles.about,
+      description:
+         "סטודיו תהילה בר-לב | שאלות ותשובות בנוגע להשכרת שמלות ערב מאת המעצבת תהילה בר-לב.",
    },
 };
 
