@@ -3,6 +3,7 @@ import SectionWrapper from "@/components/common/sectionsWrapper";
 import Link from "next/link";
 import { ROUTES } from "@/lib/constants";
 import PageTitle from "@/components/common/pageTitle";
+import AdminLogoutBtn from "@/components/adminLogoutBtn";
 
 const AdminPage = async () => {
    const user = await auth();
@@ -10,7 +11,7 @@ const AdminPage = async () => {
    return (
       <SectionWrapper>
          <PageTitle title="היי יפשלי🥰" />
-         <ul>
+         <ul className="flex flex-col gap-3">
             <li>
                <Link
                   href={ROUTES.newDress.path}
@@ -18,6 +19,9 @@ const AdminPage = async () => {
                >
                   הוספת שמלה
                </Link>
+            </li>
+            <li>
+               <AdminLogoutBtn />
             </li>
          </ul>
       </SectionWrapper>

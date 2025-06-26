@@ -45,7 +45,6 @@ export async function contactAboutDress(dressPath) {
    const fullDressPath = process.env.BASE_URL + dressPath;
    const text = TEXTS.askAboutDress + fullDressPath;
    const encodedText = encodeURIComponent(text);
-   console.log(encodedText);
    const WSLink = `${process.env.WS_LINK}?text=${encodedText}`;
    redirect(WSLink);
 }

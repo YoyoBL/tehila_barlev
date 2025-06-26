@@ -12,8 +12,6 @@ const ShareDressBtn = ({ dress }) => {
                text: TEXTS.common.shareTitle,
                url: `/catalog/${dress.id}`,
             });
-
-            console.log("Content shared successfully");
          } catch (error) {
             console.error("Error sharing content:", error);
          }

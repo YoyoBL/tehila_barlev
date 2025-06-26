@@ -1,6 +1,6 @@
 import PageTitle from "@/components/common/pageTitle";
 import SectionWrapper from "@/components/common/sectionsWrapper";
-import { TEXTS, q_and_a } from "@/lib/texts";
+import { METADATA, TEXTS, q_and_a } from "@/lib/texts";
 import deco1 from "@/images/decorations/deco1.png";
 import deco2 from "@/images/decorations/deco2.png";
 import deco3 from "@/images/decorations/deco3.png";
@@ -9,6 +9,8 @@ import deco5 from "@/images/decorations/deco5.png";
 import deco6 from "@/images/decorations/deco6.png";
 import deco7 from "@/images/decorations/deco7.png";
 import Image from "next/image";
+
+export const metadata = METADATA.about;
 
 const decorations = [deco1, deco2, deco3, deco4, deco5, deco6, deco7];
 

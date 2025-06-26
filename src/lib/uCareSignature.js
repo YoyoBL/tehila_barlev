@@ -21,6 +21,5 @@ export async function deleteMultipleImages(uuids) {
 
 export async function storeImages(uuids = []) {
    const result = await storeFiles({ uuids }, { authSchema: uploadCareSchema });
-   console.log(result);
    return result;
 }

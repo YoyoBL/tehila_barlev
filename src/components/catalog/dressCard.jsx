@@ -60,7 +60,9 @@ const DressCard = memo(({ dressData }) => {
             <div className="relative">
                <div className="absolute top-0 -translate-y-4 w-full h-5 bg-base-100 rounded-t-box"></div>
                <div className="text-center bg-base-100 p-2 pt-0 w-full rounded-t-2xl ">
-                  <h2 className="tracking-tight">{title}</h2>
+                  <h2 className="tracking-tight capitalize">
+                     {title.toLowerCase()}
+                  </h2>
                   <h3 className="text-base">
                      {price}
                      {ILS}
