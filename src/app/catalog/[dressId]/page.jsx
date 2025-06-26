@@ -41,8 +41,8 @@ const DressPage = async ({ params: { dressId } }) => {
    )}`;
    return (
       <SectionWrapper className="h-full justify-center relative">
-         <div className="grid grid-cols-3 place-items-center md:w-xl md:mx-auto">
-            <h1>{dressData.title}</h1>
+         <div className="grid grid-cols-3 place-items-center md:w-xl md:mx-auto capitalize">
+            <h1>{dressData.title.toLowerCase()}</h1>
             <h2 className="w-full border-l border-r text-center">
                {dressData.price + ILS}
             </h2>

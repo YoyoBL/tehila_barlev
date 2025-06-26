@@ -35,13 +35,6 @@ const NewDressForm = ({ dress }) => {
       );
    }
 
-   // useEffect(() => {
-   //    if (!mounted) return;
-   //    const ctx = document.querySelector("#uploaderctx");
-
-   //    addImagesToUploadList(["e75d3aa3-9b27-4c17-b7af-dc80569d76c7","192db5d1-f844-4303-9e61-8451fb88c8e9" ])
-   // }, [mounted]);
-
    const formik = useFormik({
       initialValues: {
          title: "",
@@ -54,6 +47,7 @@ const NewDressForm = ({ dress }) => {
          try {
             if (!tags.length || !sizes.length || !imagesUuid.length)
                throw new Error(TEXTS.newDress.missingFields);
+            values.title = values.title.toLowerCase();
             values = { ...values, images: imagesUuid };
             let res;
             if (!dress) {
@@ -67,7 +61,6 @@ const NewDressForm = ({ dress }) => {
             if (error) return console.log(error);
             //if updating, return to dress page
             if (dress) replace(ROUTES.catalog.path + "/" + dress.id);
-            console.log(data);
             resetUploader();
             resetTags([...formik.values.tags, ...formik.values.sizes]);
 
