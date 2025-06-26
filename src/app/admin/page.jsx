@@ -11,7 +11,7 @@ const AdminPage = async () => {
    return (
       <SectionWrapper>
          <PageTitle title="היי יפשלי🥰" />
-         <ul>
+         <ul className="flex flex-col gap-3">
             <li>
                <Link
                   href={ROUTES.newDress.path}
