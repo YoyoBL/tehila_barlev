@@ -2,15 +2,22 @@
 
 import { TEXTS } from "@/lib/texts";
 import { sendGTMEvent } from "@next/third-parties/google";
+import { trackEvent } from "@/actions/analytics.actions";
 
 const ShareDressBtn = ({ dress }) => {
    const handleShare = async () => {
+      try {
+         await trackEvent(dress.id, "SHARE");
+      } catch (err) {
+         console.error("Failed to track share event:", err);
+      }
+
       if (navigator.share) {
          try {
             await navigator.share({
                title: TEXTS.common.shareTitle,
                text: TEXTS.common.shareTitle,
-               url: `/catalog/${dress.id}`,
+               url: window.location.origin + `/catalog/${dress.id}`,
             });
          } catch (error) {
             console.error("Error sharing content:", error);

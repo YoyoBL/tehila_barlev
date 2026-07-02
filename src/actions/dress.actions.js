@@ -8,6 +8,7 @@ import { deleteMultipleImages, storeImages } from "@/lib/uCareSignature";
 import { revalidatePath } from "next/cache";
 import { ROUTES } from "@/lib/constants";
 import { authorize } from "@/lib/authorize";
+import { trackEvent } from "./analytics.actions";
 
 export async function addNewDress(formData) {
    try {
@@ -42,6 +43,15 @@ export async function updateDress(dress) {
 }
 
 export async function contactAboutDress(dressPath) {
+   try {
+      const dressId = dressPath.split("/").pop();
+      if (dressId) {
+         await trackEvent(dressId, "CONTACT");
+      }
+   } catch (e) {
+      console.error("Failed to track contact event:", e.message);
+   }
+
    const fullDressPath = process.env.BASE_URL + dressPath;
    const text = TEXTS.askAboutDress + fullDressPath;
    const encodedText = encodeURIComponent(text);

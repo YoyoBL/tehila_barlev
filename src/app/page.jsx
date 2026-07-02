@@ -16,6 +16,7 @@ function App() {
             backgroundPosition: "center",
          }}
       >
+         <h1 className="sr-only">תהילה בר-לב - סטודיו לשמלות כלה וערב להשכרה</h1>
          <div className="glass mt-auto h-[200px] w-full flex flex-col gap-3 items-center justify-center bg-base-100 rounded-t-box">
             <h2 className={`${playFairDisplay.className} text-4xl`}>
                New Collection

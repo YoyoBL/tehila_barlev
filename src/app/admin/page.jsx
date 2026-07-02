@@ -21,6 +21,14 @@ const AdminPage = async () => {
                </Link>
             </li>
             <li>
+               <Link
+                  href="/admin/analytics"
+                  className="btn btn-neutral btn-lg btn-block"
+               >
+                  נתוני פעילות ואנליטיקס
+               </Link>
+            </li>
+            <li>
                <AdminLogoutBtn />
             </li>
          </ul>

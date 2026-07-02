@@ -8,11 +8,31 @@ import { SessionProvider } from "next-auth/react";
 import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata = {
+   metadataBase: new URL("https://tehilabarlev.com"),
    title: {
       template: `%s | ${METADATA.siteTitle}`,
       default: METADATA.siteTitle,
    },
    description: METADATA.homePage.description,
+   alternates: {
+      canonical: "./",
+   },
+   openGraph: {
+      type: "website",
+      locale: "he_IL",
+      url: "https://tehilabarlev.com",
+      siteName: METADATA.siteTitle,
+      title: METADATA.siteTitle,
+      description: METADATA.homePage.description,
+      images: [
+         {
+            url: "/icon.jpg",
+            width: 800,
+            height: 800,
+            alt: METADATA.siteTitle,
+         },
+      ],
+   },
 };
 
 export default async function RootLayout({ children }) {

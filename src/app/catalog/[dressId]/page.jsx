@@ -5,6 +5,7 @@ import SectionWrapper from "@/components/common/sectionsWrapper";
 import { ILS, U_CARE_CDN_BASEURL } from "@/lib/constants";
 import { getAllDresses, getDress } from "@/lib/dressLib";
 import Image from "next/image";
+import TrackView from "@/components/catalog/trackView";
 
 export async function generateStaticParams() {
    const dresses = await getAllDresses();
@@ -36,11 +37,12 @@ export async function generateMetadata({ params: { dressId } }) {
 const DressPage = async ({ params: { dressId } }) => {
    const dressData = await getDress(dressId);
 
-   const sizes = `${Math.max(...dressData.sizes)} - ${Math.min(
+   const sizes = `${Math.min(...dressData.sizes)} - ${Math.max(
       ...dressData.sizes
    )}`;
    return (
       <SectionWrapper className="h-full justify-center relative">
+         <TrackView dressId={dressId} />
          <div className="grid grid-cols-3 place-items-center md:w-xl md:mx-auto capitalize">
             <h1>{dressData.title.toLowerCase()}</h1>
             <h2 className="w-full border-l border-r text-center">

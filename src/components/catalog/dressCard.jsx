@@ -49,7 +49,7 @@ const DressCard = memo(({ dressData }) => {
                   src={coverSrc}
                   width={400}
                   height={720}
-                  alt={"Black Dress"}
+                  alt={`${title} - שמלת ערב | תהילה בר-לב`}
                   className="h-[280px] object-cover object-center"
                   priority
                />

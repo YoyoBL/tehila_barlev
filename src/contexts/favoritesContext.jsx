@@ -6,6 +6,7 @@ import {
    removeDressFromFavLS,
 } from "@/lib/favourites";
 import { createContext, useContext, useEffect, useState } from "react";
+import { trackEvent } from "@/actions/analytics.actions";
 
 const FavoritesContext = createContext({
    handleFavClick: () => {},
@@ -18,6 +19,11 @@ export const FavoritesProvider = ({ children }) => {
    function handleFavClick(dressId) {
       if (favDresses[dressId]) return removeFromFav(dressId);
       addToFav(dressId);
+      try {
+         trackEvent(dressId, "FAVORITE");
+      } catch (err) {
+         console.error("Failed to track favorite event:", err);
+      }
    }
 
    function addToFav(dressId) {

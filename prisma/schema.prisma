@@ -24,5 +24,14 @@ model Dress {
   tags String[] @default([])
   images String[]  @default([])
   createdAt DateTime @default(now())
+  activityEvents ActivityEvent[]
+}
 
+model ActivityEvent {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  dressId   String   @db.ObjectId
+  type      String   // "VIEW", "CONTACT", "SHARE", "FAVORITE"
+  createdAt DateTime @default(now())
+  
+  dress     Dress    @relation(fields: [dressId], references: [id], onDelete: Cascade)
 }
