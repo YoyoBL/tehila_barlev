@@ -20,30 +20,28 @@ const AboutPage = () => {
          <PageTitle title={TEXTS.routesTitles.about} />
          <div className="flex flex-col gap-2">
             {q_and_a.map(({ question, answer }, index) => (
-               <>
-                  <div className="collapse bg-primary">
-                     <input
-                        type="radio"
-                        name="my-accordion-1"
-                        defaultChecked={!index}
-                     />
-                     <div className="collapse-title text-xl font-medium ">
-                        {question}
-                     </div>
-                     <div className="collapse-content text-base m-1 pt-3 rounded-box bg-white ">
-                        <div className="flex opacity-30">
-                           <span>•</span>
-                           <Image
-                              className="h-6 w-auto mx-auto object-contain"
-                              src={decorations[index % decorations.length]}
-                              alt="Decoration element"
-                           />
-                           <span>•</span>
-                        </div>
-                        <p>{answer}</p>
-                     </div>
+               <div key={index} className="collapse bg-primary">
+                  <input
+                     type="radio"
+                     name="my-accordion-1"
+                     defaultChecked={!index}
+                  />
+                  <div className="collapse-title text-xl font-medium ">
+                     {question}
                   </div>
-               </>
+                  <div className="collapse-content text-base m-1 pt-3 rounded-box bg-white ">
+                     <div className="flex opacity-30">
+                        <span>•</span>
+                        <Image
+                           className="h-6 w-auto mx-auto object-contain"
+                           src={decorations[index % decorations.length]}
+                           alt="Decoration element"
+                        />
+                        <span>•</span>
+                     </div>
+                     <p className="whitespace-pre-line">{answer}</p>
+                  </div>
+               </div>
             ))}
          </div>
       </SectionWrapper>

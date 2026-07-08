@@ -12,7 +12,7 @@ function ImageUpload() {
 
    useEffect(() => {
       setMounted(true);
-   }, []);
+   }, [setMounted]);
 
    const handleChangeEvent = (items) => {
       setFiles([

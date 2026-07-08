@@ -79,6 +79,7 @@ const NewDressForm = ({ dress }) => {
       formik.setValues(dress);
       resetTags([...dress.tags, ...dress.sizes], true);
       addImagesToUploadList(dress.images);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [mounted]);
 
    const { title, price, sizes, coverIndex } = formik.values;
@@ -203,6 +204,8 @@ export default NewDressForm;
 function resetTags(tags = [], checked = false) {
    for (const badgeValue of tags) {
       const element = document.querySelector(`input[value="${badgeValue}"]`);
-      element.checked = checked;
+      if (element) {
+         element.checked = checked;
+      }
    }
 }

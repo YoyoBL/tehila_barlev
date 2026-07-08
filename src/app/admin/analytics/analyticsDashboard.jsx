@@ -40,19 +40,18 @@ export default function AnalyticsDashboard() {
    };
 
    // Fetch data
-   const fetchData = () => {
-      startTransition(async () => {
-         setError(null);
-         const res = await getAnalyticsData(startDate, endDate);
-         if (res.error) {
-            setError(res.error);
-         } else {
-            setAnalytics(res.data);
-         }
-      });
-   };
-
    useEffect(() => {
+      const fetchData = () => {
+         startTransition(async () => {
+            setError(null);
+            const res = await getAnalyticsData(startDate, endDate);
+            if (res.error) {
+               setError(res.error);
+            } else {
+               setAnalytics(res.data);
+            }
+         });
+      };
       fetchData();
    }, [startDate, endDate]);
 
