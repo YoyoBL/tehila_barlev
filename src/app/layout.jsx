@@ -46,7 +46,7 @@ export default async function RootLayout({ children }) {
                <header>
                   <Navbar />
                </header>
-               <main className="container h-full mx-auto">{children}</main>
+               <main className="w-full h-full flex-grow flex flex-col">{children}</main>
             </SessionProvider>
          </body>
       </html>

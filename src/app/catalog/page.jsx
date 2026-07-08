@@ -11,7 +11,7 @@ export const metadata = METADATA.catalog;
 const CatalogPage = async () => {
    const dresses = await getAllDresses();
    return (
-      <section className="h-full py-3 px-5 flex flex-col gap-2">
+      <section className="h-full w-full max-w-6xl mx-auto py-3 px-5 flex flex-col gap-2">
          <CatalogProviders>
             <PageTitle title={ROUTES.catalog.title} />
             <BadgesFilters />
