@@ -51,19 +51,19 @@ function App() {
          />
 
          {/* Mobile View: Cozy bottom glass drawer */}
-         <div className="mt-auto w-full bg-white/45 backdrop-blur-lg border-t border-white/25 shadow-2xl rounded-t-[2.5rem] py-6 px-6 flex flex-col gap-2 items-center text-center transition-all duration-300 hover:bg-white/55 md:hidden">
-            <h2 className={`${playFairDisplay.className} text-4xl font-semibold tracking-wide text-neutral-800 uppercase`}>
+         <div className="mt-auto w-full bg-white/45 backdrop-blur-lg border-t border-white/25 shadow-2xl rounded-t-[2rem] pt-4 pb-5 px-4 flex flex-col gap-1 items-center text-center transition-all duration-300 hover:bg-white/55 md:hidden">
+            <h2 className={`${playFairDisplay.className} text-2xl font-bold tracking-wide text-neutral-800 uppercase`}>
                New Collection
             </h2>
-            <span className={`${pinyon.className} text-5xl text-primary font-medium -mt-1`}>
+            <span className={`${pinyon.className} text-3xl text-primary font-medium -mt-1`}>
                {new Date().getFullYear()}
             </span>
-            <p className="text-sm font-light text-neutral-500 tracking-wider -mt-1">
-               שמלות ערב צנועות להשכרה מאת המעצבת תהילה בר-לב
+            <p className="text-[14px] font-normal text-neutral-700 tracking-wider leading-relaxed max-w-[280px] break-keep">
+               שמלות ערב צנועות להשכרה <br /> מאת המעצבת תהילה בר-לב
             </p>
             <Link
                href={ROUTES.catalog.path}
-               className="btn btn-primary mt-2 px-12 py-3 h-auto min-h-0 text-xl font-medium rounded-full tracking-wide shadow-md transition-all duration-300 hover:scale-[1.03] hover:shadow-xl active:scale-95 w-full max-w-[280px]"
+               className="btn btn-primary mt-1 px-8 py-2.5 h-auto min-h-0 text-lg font-medium rounded-full tracking-wide shadow-md transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-95 w-full max-w-[220px]"
             >
                לשמלות
             </Link>
