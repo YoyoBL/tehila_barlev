@@ -3,20 +3,53 @@ import cover from "@/images/Cover.jpg";
 import Link from "next/link";
 import { ROUTES } from "../lib/constants";
 import { METADATA } from "@/lib/texts";
+import Image from "next/image";
 
 export const metadata = METADATA.homePage;
 
 function App() {
    return (
-      <section
-         className="h-full flex flex-col relative w-full overflow-hidden"
-         style={{
-            backgroundImage: `url(${cover.src})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-         }}
-      >
+      <section className="h-full flex flex-col relative w-full overflow-hidden">
+         {/* Optimized Background Image for LCP & Image SEO */}
+         <Image
+            src={cover}
+            fill
+            alt="תהילה בר-לב - סטודיו שמלות ערב צנועות להשכרה באשקלון"
+            className="object-cover object-center -z-10"
+            placeholder="blur"
+            priority
+         />
          <h1 className="sr-only">תהילה בר-לב - סטודיו לשמלות כלה וערב להשכרה</h1>
+         
+         {/* JSON-LD LocalBusiness Schema for local SEO */}
+         <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+               __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "LocalBusiness",
+                  "name": "סטודיו תהילה בר-לב - שמלות ערב צנועות להשכרה",
+                  "image": "https://tehilabarlev.com/icon.jpg",
+                  "url": "https://tehilabarlev.com",
+                  "address": {
+                     "@type": "PostalAddress",
+                     "streetAddress": "אשקלון, ישראל",
+                     "addressLocality": "אשקלון",
+                     "addressCountry": "IL"
+                  },
+                  "geo": {
+                     "@type": "GeoCoordinates",
+                     "latitude": "31.6688",
+                     "longitude": "34.5743"
+                  },
+                  "sameAs": [
+                     "https://wa.link/ikb5q2",
+                     "https://www.instagram.com/tehilabarlev?igsh=MXJjMHVtN284d2U3OQ=="
+                  ]
+               }),
+            }}
+         />
+
          {/* Mobile View: Cozy bottom glass drawer */}
          <div className="mt-auto w-full bg-white/45 backdrop-blur-lg border-t border-white/25 shadow-2xl rounded-t-[2.5rem] py-6 px-6 flex flex-col gap-2 items-center text-center transition-all duration-300 hover:bg-white/55 md:hidden">
             <h2 className={`${playFairDisplay.className} text-4xl font-semibold tracking-wide text-neutral-800 uppercase`}>

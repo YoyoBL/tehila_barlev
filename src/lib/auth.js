@@ -13,20 +13,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             password: { type: "password", required: true },
          },
          authorize: async (credentials) => {
-            let user = null;
+            const user = await signUserIn(credentials);
 
-            // logic to salt and hash password
-
-            // logic to verify if user exists
-            user = await signUserIn(credentials);
-
-            if (!user) {
-               // No user found, so this is their first attempt to login
-               // meaning this is also the place you could do registration
-               throw new Error("User not found.");
+            if (!user || !user.ok) {
+               return null;
             }
 
-            // return user object with the their profile data
             return user.data;
          },
       }),

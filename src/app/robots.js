@@ -1,10 +1,11 @@
 export default function robots() {
+   const baseUrl = "https://tehilabarlev.com";
    return {
       rules: {
          userAgent: "*",
          allow: "/",
-         disallow: ["/admin/", "/api/"],
+         disallow: ["/admin/", "/api/"], // Exclude private admin pages and API endpoints from indexing
       },
-      sitemap: "https://tehilabarlev.com/sitemap.xml",
+      sitemap: `${baseUrl}/sitemap.xml`,
    };
 }

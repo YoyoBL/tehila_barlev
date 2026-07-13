@@ -18,10 +18,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params: { dressId } }) {
    const dress = await getDress(dressId);
+   const sizes = `${Math.min(...dress.sizes)}-${Math.max(...dress.sizes)}`;
 
    return {
       title: dress.title,
-      description: `פרטים נוספים ויצירת קשר אודות ${dress.title}`,
+      description: `${dress.title} - שמלת ערב צנועה להשכרה בעיצוב אישי של תהילה בר-לב. זמינה במידות ${sizes} להשכרה בסטודיו באשקלון. תאמי מדידה כעת.`,
       openGraph: {
          images: [
             {

@@ -14,6 +14,15 @@ export const metadata = {
       default: METADATA.siteTitle,
    },
    description: METADATA.homePage.description,
+   keywords: [
+      "שמלות צנועות",
+      "שמלות צנועות להשכרה",
+      "שמלות ערב להשכרה",
+      "שמלות ערב צנועות",
+      "תהילה בר-לב",
+      "שמלות לאירועים צנועות",
+      "השכרת שמלות ערב באשקלון"
+   ],
    alternates: {
       canonical: "./",
    },
