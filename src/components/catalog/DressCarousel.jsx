@@ -20,6 +20,16 @@ const DressCarousel = ({ dressData }) => {
 
    return (
       <div className="w-full h-full relative flex flex-col flex-1 min-h-0">
+         {/* Preload full-size images in the background for instant lightbox load */}
+         {dressData.images.map((imageUuid) => (
+            <link
+               key={`preload-${imageUuid}`}
+               rel="preload"
+               as="image"
+               href={`${U_CARE_CDN_BASEURL}/${imageUuid}/-/preview/`}
+            />
+         ))}
+
          {/* Mobile Carousel (Swipeable, no active buttons but visual chevrons) */}
          <div className="flex-1 carousel rounded-box md:hidden h-full">
             {dressData.images.map((imageUuid, index) => (
