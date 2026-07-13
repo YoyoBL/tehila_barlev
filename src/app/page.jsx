@@ -94,6 +94,9 @@ function App() {
                   New <br />
                   Collection
                </h2>
+               <span className={`${pinyon.className} text-5xl lg:text-7xl text-primary font-medium mt-2`}>
+                  {new Date().getFullYear()}
+               </span>
             </div>
          </div>
       </section>
