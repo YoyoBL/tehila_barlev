@@ -8,7 +8,7 @@ import { ROUTES } from "@/lib/constants";
 import { useState } from "react";
 
 const DeleteDressBtn = ({ dressData }) => {
-   const modalId = "confirm-delete";
+   const modalId = `confirm-delete-${dressData.id}`;
    const { replace } = useRouter();
 
    async function handleDeleteDress() {
@@ -21,7 +21,8 @@ const DeleteDressBtn = ({ dressData }) => {
       }
    }
 
-   function openModal() {
+   function openModal(e) {
+      e.stopPropagation();
       const modal = document.getElementById(modalId);
       modal.showModal();
    }
@@ -30,9 +31,9 @@ const DeleteDressBtn = ({ dressData }) => {
       <>
          <button
             onClick={openModal}
-            className="btn btn-circle btn-error absolute top-0 right-0 m-3"
+            className="btn btn-circle btn-sm btn-error absolute top-2 right-2 shadow-md z-10"
          >
-            <i className="bi bi-trash text-xl"></i>
+            <i className="bi bi-trash text-base"></i>
          </button>
 
          <ModalConfirm

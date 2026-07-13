@@ -28,6 +28,7 @@ const ModalConfirm = ({
             <div> {message}</div>
             <div className="grid grid-cols-2 gap-3 justify-center">
                <button
+                  type="button"
                   onClick={handleConfirm}
                   disabled={isSubmitting}
                   className="btn btn-primary"
@@ -39,6 +40,7 @@ const ModalConfirm = ({
                   )}
                </button>
                <button
+                  type="button"
                   onClick={closeModal}
                   disabled={isSubmitting}
                   className="btn btn-outline"

@@ -5,8 +5,9 @@ import { memo } from "react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useFavorites } from "@/contexts/favoritesContext";
+import AdminCrudBtns from "@/components/adminCrudBtns";
 
-const DressCard = memo(({ dressData }) => {
+const DressCard = memo(({ dressData, isPreview = false }) => {
    let {
       images = [],
       title = "כותרת שמלה",
@@ -40,6 +41,7 @@ const DressCard = memo(({ dressData }) => {
 
    return (
       <div className="relative w-full max-w-[200px] shrink-0 cursor-pointer">
+         {!isPreview && <AdminCrudBtns dressData={dressData} />}
          <div
             onClick={onRedirect}
             className="shadow-lg overflow-hidden rounded-2xl"

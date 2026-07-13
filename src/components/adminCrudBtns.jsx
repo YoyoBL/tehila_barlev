@@ -1,7 +1,6 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import DeleteDressBtn from "./catalog/DeleteDressBtn";
 import Link from "next/link";
 import { ROUTES } from "@/lib/constants";
 
@@ -10,14 +9,14 @@ const AdminCrudBtns = ({ dressData }) => {
    const isAdmin = session?.status === "authenticated";
    if (!isAdmin) return null;
    return (
-      <>
-         <DeleteDressBtn dressData={dressData} />
-         <div className="absolute top-0 left-0 btn btn-circle btn-accent m-3">
-            <Link href={ROUTES.newDress.path + `?edit=${dressData.id}`}>
-               <i className="bi bi-pencil text-xl"></i>
-            </Link>
-         </div>
-      </>
+      <div 
+         onClick={(e) => e.stopPropagation()}
+         className="absolute top-2 left-2 btn btn-circle btn-sm btn-accent shadow-md z-10"
+      >
+         <Link href={ROUTES.newDress.path + `?edit=${dressData.id}`}>
+            <i className="bi bi-pencil text-base"></i>
+         </Link>
+      </div>
    );
 };
 

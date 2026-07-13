@@ -8,7 +8,8 @@ import Badge from "@/components/common/badge";
 import DressCard from "@/components/catalog/dressCard";
 import { TEXTS } from "@/lib/texts";
 import { useImages } from "@/contexts/imageContext";
-import { addNewDress, updateDress } from "@/actions/dress.actions";
+import { addNewDress, updateDress, deleteDress } from "@/actions/dress.actions";
+import ModalConfirm from "@/components/common/ModalClient";
 import { useEffect, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import Image from "next/image";
@@ -21,6 +22,24 @@ const NewDressForm = ({ dress }) => {
    const { mounted, files, resetUploader, addImagesToUploadList } = useImages();
    const [error, setError] = useState("");
    const { replace, refresh } = useRouter();
+
+   const modalId = "confirm-delete-form";
+
+   async function handleDeleteDress() {
+      try {
+         const res = await deleteDress(dress.id);
+         if (res.error) throw new Error(res.error);
+         replace(ROUTES.catalog.path);
+      } catch (error) {
+         console.log(error);
+         setError(error.message);
+      }
+   }
+
+   function openModal() {
+      const modal = document.getElementById(modalId);
+      if (modal) modal.showModal();
+   }
 
    const imagesUuid = useMemo(() => files.map((file) => file.uuid), [files]);
 
@@ -85,7 +104,8 @@ const NewDressForm = ({ dress }) => {
    const { title, price, sizes, coverIndex } = formik.values;
 
    return (
-      <form onSubmit={formik.handleSubmit} className="grid gap-2">
+      <>
+         <form onSubmit={formik.handleSubmit} className="grid gap-2">
          <div className="grid grid-cols-3 gap-2">
             <div className="col-span-2">
                <TextInput
@@ -138,6 +158,7 @@ const NewDressForm = ({ dress }) => {
          <h3>{TEXTS.common.preview}</h3>
          <div className="mt-3 flex gap-3">
             <DressCard
+               isPreview={true}
                dressData={{
                   images: imagesUuid,
                   title,
@@ -184,18 +205,37 @@ const NewDressForm = ({ dress }) => {
                <span>{error}</span>
             </div>
          )}
-         <button
-            disabled={formik.isSubmitting}
-            className="btn btn-primary btn-block btn-lg mb-5"
-            type="submit"
-         >
-            {formik.isSubmitting ? (
-               <div className="loading loading-dots loading-md"></div>
-            ) : (
-               TEXTS.common.save
-            )}
-         </button>
-      </form>
+            <div className={cn("grid gap-3 mb-5", dress ? "grid-cols-2" : "grid-cols-1")}>
+               <button
+                  disabled={formik.isSubmitting}
+                  className="btn btn-primary btn-lg"
+                  type="submit"
+               >
+                  {formik.isSubmitting ? (
+                     <div className="loading loading-dots loading-md"></div>
+                  ) : (
+                     TEXTS.common.save
+                  )}
+               </button>
+               {dress && (
+                  <button
+                     type="button"
+                     onClick={openModal}
+                     className="btn btn-error btn-lg"
+                  >
+                     מחק שמלה
+                  </button>
+               )}
+            </div>
+         </form>
+         {dress && (
+            <ModalConfirm
+               modalId={modalId}
+               message={TEXTS.messages.delete + dress.title + "?"}
+               onConfirm={handleDeleteDress}
+            />
+         )}
+      </>
    );
 };
 
