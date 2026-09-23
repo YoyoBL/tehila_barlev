@@ -6,7 +6,7 @@ import { TEXTS } from "@/lib/texts";
 import { redirect } from "next/navigation";
 import { deleteMultipleImages, storeImages } from "@/lib/uCareSignature";
 import { revalidatePath } from "next/cache";
-import { ROUTES } from "@/lib/constants";
+import { ROUTES, WS_LINK } from "@/lib/constants";
 import { authorize } from "@/lib/authorize";
 import { trackEvent } from "./analytics.actions";
 
@@ -55,7 +55,7 @@ export async function contactAboutDress(dressPath) {
    const fullDressPath = process.env.BASE_URL + dressPath;
    const text = TEXTS.askAboutDress + fullDressPath;
    const encodedText = encodeURIComponent(text);
-   const WSLink = `${process.env.WS_LINK}?text=${encodedText}`;
+   const WSLink = `${WS_LINK}?text=${encodedText}`;
    redirect(WSLink);
 }
 

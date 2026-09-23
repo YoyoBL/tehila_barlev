@@ -5,12 +5,14 @@ export const ROUTES = {
    about: { path: "/about", title: TEXTS.routesTitles.about },
    catalog: { path: "/catalog", title: TEXTS.routesTitles.catalog },
    guide: { path: "/guide", title: TEXTS.routesTitles.guide },
-   whatsapp: { path: "https://wa.link/ikb5q2" },
+   whatsapp: { path: "https://wa.link/yzlzaa" },
    instagram: {
       path: "https://www.instagram.com/tehilabarlev?igsh=MXJjMHVtN284d2U3OQ==",
    },
    newDress: { path: "/admin/new-dress", title: TEXTS.routesTitles.newDress },
 };
+
+export const WS_LINK = "https://wa.me/972553100884";
 
 const TAGS = [...TEXTS.tags];
 

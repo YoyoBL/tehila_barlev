@@ -43,7 +43,7 @@ function App() {
                      "longitude": "34.5743"
                   },
                   "sameAs": [
-                     "https://wa.link/ikb5q2",
+                     "https://wa.link/yzlzaa",
                      "https://www.instagram.com/tehilabarlev?igsh=MXJjMHVtN284d2U3OQ=="
                   ]
                }),
