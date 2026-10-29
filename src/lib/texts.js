@@ -31,6 +31,7 @@ export const TEXTS = {
       delete: "למחוק את - ",
    },
    tags: [
+      "כלה",
       "מחוך",
       "טול",
       "מקסי",
