@@ -101,7 +101,8 @@ const NewDressForm = ({ dress }) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [mounted]);
 
-   const { title, price, sizes, coverIndex } = formik.values;
+   const { title, price, sizes, coverIndex, tags: selectedTags } = formik.values;
+   const isBridal = selectedTags.includes("כלה");
 
    return (
       <>
@@ -118,7 +119,7 @@ const NewDressForm = ({ dress }) => {
             <div className="col-span-1">
                <TextInput
                   label={TEXTS.common.price}
-                  required
+                  required={!isBridal}
                   pattern="\d*"
                   inputMode="numeric"
                   {...formik.getFieldProps("price")}
@@ -165,6 +166,7 @@ const NewDressForm = ({ dress }) => {
                   price,
                   sizes,
                   coverIndex,
+                  tags: selectedTags,
                }}
             />
             <div className="grid grid-cols-2 items-stretch gap-2">

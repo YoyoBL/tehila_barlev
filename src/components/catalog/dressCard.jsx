@@ -14,7 +14,10 @@ const DressCard = memo(({ dressData, isPreview = false }) => {
       price = 0,
       sizes = [0, 3, 2],
       coverIndex = 0,
+      tags = [],
    } = dressData;
+
+   const showPrice = !tags?.includes("כלה") && Boolean(price);
 
    const router = useRouter();
    const path = usePathname();
@@ -65,10 +68,12 @@ const DressCard = memo(({ dressData, isPreview = false }) => {
                   <h2 className="tracking-tight capitalize">
                      {title.toLowerCase()}
                   </h2>
-                  <h3 className="text-base">
-                     {price}
-                     {ILS}
-                  </h3>
+                  {showPrice && (
+                     <h3 className="text-base">
+                        {price}
+                        {ILS}
+                     </h3>
+                  )}
                   <p className="text-sm text-neutral-400">{size}</p>
                </div>
             </div>

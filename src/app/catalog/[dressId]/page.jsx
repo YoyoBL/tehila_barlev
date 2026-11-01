@@ -42,6 +42,7 @@ const DressPage = async ({ params: { dressId } }) => {
    const sizes = `${Math.min(...dressData.sizes)} - ${Math.max(
       ...dressData.sizes
    )}`;
+   const showPrice = !dressData.tags?.includes("כלה") && Boolean(dressData.price);
    return (
       <SectionWrapper className="h-full relative pt-2 pb-4 px-4 md:px-8 max-w-6xl mx-auto flex flex-col justify-between overflow-hidden">
          <TrackView dressId={dressId} />
@@ -67,13 +68,17 @@ const DressPage = async ({ params: { dressId } }) => {
             
             {/* Price and sizes under it with a divider between */}
             <div className="flex flex-row items-center gap-3 text-base">
-               {/* Right: Price */}
-               <span className="font-bold text-neutral-800 shrink-0">
-                  {dressData.price + ILS}
-               </span>
-               
-               {/* Divider */}
-               <span className="h-4 w-[1px] bg-neutral-200"></span>
+               {showPrice && (
+                  <>
+                     {/* Right: Price */}
+                     <span className="font-bold text-neutral-800 shrink-0">
+                        {dressData.price + ILS}
+                     </span>
+                     
+                     {/* Divider */}
+                     <span className="h-4 w-[1px] bg-neutral-200"></span>
+                  </>
+               )}
                
                {/* Left: Sizes */}
                <span className="text-neutral-500 font-light shrink-0">
@@ -95,13 +100,17 @@ const DressPage = async ({ params: { dressId } }) => {
                </Link>
             </div>
             
-            {/* Right: Price */}
-            <span className="text-2xl font-bold text-neutral-800 shrink-0">
-               {dressData.price + ILS}
-            </span>
-            
-            {/* Divider */}
-            <span className="h-6 w-[1px] bg-neutral-200"></span>
+            {showPrice && (
+               <>
+                  {/* Right: Price */}
+                  <span className="text-2xl font-bold text-neutral-800 shrink-0">
+                     {dressData.price + ILS}
+                  </span>
+                  
+                  {/* Divider */}
+                  <span className="h-6 w-[1px] bg-neutral-200"></span>
+               </>
+            )}
             
             {/* Center: Title */}
             <h1 className={`${playFairDisplay.className} text-3xl font-bold tracking-wide text-neutral-800 uppercase`}>
