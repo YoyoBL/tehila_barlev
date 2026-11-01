@@ -15,7 +15,7 @@ export async function addNewDress(formData) {
       const newDress = await prisma.dress.create({ data: formData });
       const { id, createdAt, images, ...data } = newDress;
       await storeImages(images);
-      revalidateCatalogPage();
+      revalidateCatalogPage(id);
       return { data, error: null };
    } catch (error) {
       return { error: error.message, data: null };
@@ -31,7 +31,7 @@ export async function updateDress(dress) {
          },
          data: rest,
       });
-      revalidateCatalogPage();
+      revalidateCatalogPage(dressId);
       const { id, createdAt, images, ...data } = updateDress;
       await storeImages(images);
 
@@ -70,7 +70,7 @@ export async function deleteDress(dressId) {
 
       await deleteMultipleImages(imagesUuids);
 
-      revalidatePath(ROUTES.catalog.path);
+      revalidateCatalogPage(dressId);
 
       return { error: null, data: deleteDress };
    } catch (error) {
@@ -94,6 +94,10 @@ export async function getDress(dressId) {
    }
 }
 
-function revalidateCatalogPage() {
-   revalidatePath(ROUTES.catalog.path);
-}
+   function revalidateCatalogPage(dressId) {
+      revalidatePath(ROUTES.catalog.path);
+      revalidatePath("/sitemap.xml");
+      if (dressId) {
+         revalidatePath(`${ROUTES.catalog.path}/${dressId}`);
+      }
+   }
